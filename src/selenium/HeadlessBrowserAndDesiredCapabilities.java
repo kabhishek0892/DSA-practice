@@ -26,7 +26,6 @@ public class HeadlessBrowserAndDesiredCapabilities {
         //Prevents Chrome from displaying the notification 'Chrome is being controlled by automated software
         chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         chromeOptions.setAcceptInsecureCerts(true);
-        chromeOptions.setAcceptInsecureCerts(true);
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.get("https://www.onlinesbi.com/");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

@@ -3,8 +3,10 @@ package selenium;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class WindowsTest {
     public static void main(String[] args) throws InterruptedException {
@@ -24,9 +26,10 @@ public class WindowsTest {
         WebElement link = driver.findElement(By.xpath("//a[@id='product-menu-toggle']//span[@class='account-down-caret']//*[local-name()='svg']"));
         Actions newwin = new Actions(driver);
         newwin.keyDown(Keys.SHIFT).click(link).keyUp(Keys.SHIFT).build().perform();
+
 //Thread.sleep(2000);
 //js.executeScript("window.scrollBy(0,400)");
-        Thread.sleep(3000);
+       WebDriverWait wait = new WebDriverWait(driver,30);
         Set<String> windows = driver.getWindowHandles();
         System.out.println(windows);
         System.out.println("a1");

@@ -10,8 +10,7 @@ public class ObjectMapperDemo {
     public static void main(String[] args) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayNode node =objectMapper.createArrayNode();
-        node.add("first");
-        node.add("second");
+
         ObjectNode map = objectMapper.createObjectNode();
         map.put("name","Abhishek");
         map.put("phoneNumber","2475147");

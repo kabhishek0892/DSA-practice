@@ -1,6 +1,5 @@
 package java_prac;
 
-import java.sql.SQLOutput;
 
 public class InstanceOf {
     public static void main(String[] args) {

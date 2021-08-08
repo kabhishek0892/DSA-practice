@@ -7,6 +7,16 @@ import java.util.Map;
 public class FirstUniqueCharacter {
     public static void main(String[] args) {
         char x =firstUniqChar("eetltu");
+        String s ="abbacd";
+        for(int i=0;i<s.length();i++)
+        {
+            char c= s.charAt(i);
+            if(s.indexOf(c)==s.lastIndexOf(c))
+            {
+                System.out.println("Character is unique"+ c);
+                break;
+            }
+        }
         System.out.println("First unique character is " + x);
     }
     static char firstUniqChar(String s) {
