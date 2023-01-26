@@ -1,0 +1,51 @@
+@Factory
+This annotation helps to run multiple test classes through a single test class. It basically defines and create tests dynamically.
+
+The below code snippet indicates the use of @Factory annotation that helps calls the test method class.
+
+package ChromeDriver;
+
+import org.testng.annotations.Test;
+
+public class FactorySimplyTest1 {
+
+    @Test
+    public void testMethod1() {
+        System.out.println("This is to test for method 1 for Factor Annotation");
+    
+}}
+
+
+package ChromeDriver;
+
+import org.testng.annotations.Test;
+
+public class FactorySimpleTest2 {
+
+    @Test
+    public void testMethod2() {
+        System.out.println("This is to test for method 2 for Factor Annotation");
+    
+    
+}
+}
+
+
+package ChromeDriver;
+
+import org.testng.annotations.Factory;
+import org.testng.annotations.Test;
+
+public class FactoryAnnotation {
+
+    @Factory()
+    @Test
+    public Object[] getTestFactoryMethod() {
+        Object[] factoryTest = new Object[2];
+        factoryTest[0] = new FactorySimplyTest1();
+        factoryTest[1] = new FactorySimpleTest2();
+        return factoryTest;
+    }
+    
+}
+

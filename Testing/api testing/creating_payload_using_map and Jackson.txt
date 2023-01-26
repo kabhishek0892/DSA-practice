@@ -1,0 +1,51 @@
+Expected json:
+{
+    "firstname" : "Jim",
+    "lastname" : "Brown",
+    "totalprice" : 111,
+    "depositpaid" : true,
+    "bookingdates" : {
+        "checkin" : "2018-01-01",
+        "checkout" : "2019-01-01"
+    },
+    "additionalneeds" : "Breakfast"
+}
+
+Using Map:
+--------------------------------------------------------
+Map<String,Object> jsonBodyUsingMap = new HashMap<String,Object>();
+jsonBodyUsingMap.put("firstname", "Jim");
+jsonBodyUsingMap.put("lastname", "Brown");
+jsonBodyUsingMap.put("totalprice", 111);
+jsonBodyUsingMap.put("depositpaid", true);
+		
+Map<String,String> bookingDatesMap = new HashMap<>();
+bookingDatesMap.put("checkin", "2021-07-01");
+bookingDatesMap.put("checkout", "2021-07-01");
+		
+jsonBodyUsingMap.put("bookingdates", bookingDatesMap);
+jsonBodyUsingMap.put("additionalneeds", "Breakfast");
+
+
+----------------------------------------------------------
+Using Jackson 
+
+ObjectMapper objectMapper = new ObjectMapper();
+		
+// Creating Node that maps to JSON Object structures in JSON content
+ObjectNode bookingDetails = objectMapper.createObjectNode();
+		
+// It is similar to map put method. put method is overloaded to accept different types of data
+// String as field value
+bookingDetails.put("firstname", "Jim");
+bookingDetails.put("lastname", "Brown");
+// integer as field value
+bookingDetails.put("totalprice", 111);
+// boolean as field value
+bookingDetails.put("depositpaid", true);
+bookingDetails.put("additionalneeds", "Breakfast");
+// Duplicate field name. Will override value
+bookingDetails.put("additionalneeds", "Lunch");
+// To print created json object
+String createdPlainJsonObject = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(bookingDetails);
+System.out.println("Created plain JSON Object is : \n"+ createdPlainJsonObject);

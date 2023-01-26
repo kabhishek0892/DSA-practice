@@ -1,0 +1,30 @@
+http://makeseleniumeasy.com/2017/08/20/part-3-handling-multi-select-drop-down-created-using-select-tag/
+Select class calls a constructor for select tag .There may be cases when there is no select tag in html so in that case
+select has to be handled differently
+
+--------------
+without select tag don't use select class and use as it is action class or by normal seleniumcommands
+but in case of select class
+use 
+select.Ismultiple
+select.getOptions
+select.getAllSelectedOptions--
+All these methods to select multiple values
+
+-----------------------------
+Actions
+
+click
+clickandHold(webelement)
+clickandhold
+draganddropBy(int x,int y)
+DragAndDropBy(webelement,int x,int y)
+KeyUp
+Keydown
+moveToelement(---------->use in slider
+MoveByoffset
+contextclick(right click)
+doubleclick(double click)
+sendKeys
+
+

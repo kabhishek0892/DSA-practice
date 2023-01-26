@@ -1,0 +1,15 @@
+ResponseSpecBuilder responseSpecBuilder = new ResponseSpecBuilder();
+responseSpecBuilder.expectStatusCode(200);
+responseSpecBuilder.expectStatusLine("HTTP/1.1 200 OK");
+responseSpecBuilder.expectContentType(ContentType.JSON);
+responseSpecBuilder.expectResponseTime(Matchers.lessThan(5000L));	
+ResponseSpecification responseSpecification = responseSpecBuilder.build();
+
+Or instead of calling ResponseSpecBuilder reference multiple times, we can use the builder pattern as below:-
+// Create a ResponseSpecification using ResponseSpecBuilder
+responseSpecification = new ResponseSpecBuilder()
+	.expectStatusCode(200)
+        .expectStatusLine("HTTP/1.1 200 OK")
+	.expectContentType(ContentType.JSON)
+	.expectResponseTime(Matchers.lessThan(5000L))	
+	.build();

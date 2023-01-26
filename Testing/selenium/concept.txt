@@ -1,0 +1,3 @@
+Now relate this understanding with the concepts of Interface and Abstract class. 
+Hopefully you will be able to understand. The best example will be WebDriver interface in Selenium. WebDriver has a contract of methods which is supposed to perform a specific task. Browser specific classes which implement WebDriver has responsibility to perform those tasks in their ways. Chrome browser does not worry about how Firefox browser is performing a tasks. 
+WebDriver also has nothing to worry about implementation done by various browser. This is Abstraction.

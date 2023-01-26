@@ -1,0 +1,61 @@
+/* We need to add Parameters annotation to read value from testng xml. Note here that
+     * attribute name passed in Parameters must be same as testng xml. 
+    */
+    @Parameters({"confBeforeParameter"})
+    @BeforeMethod
+    public void configurationBeforeMethod(String confBeforeParameter)
+    {
+        System.out.println("Paramters for before configuration method: "+confBeforeParameter);
+    }
+     
+    @Parameters({"testParameters1","testParameters2"})
+ ===========================================================================
+“parameter” is a tag which is used to pass values to parameterized methods of a TestNG class. 
+ We can pass those parameters as a whole at “suite” level or “test” level,class,method
+Parameter value at higher level will be overridden by value at lower level if same parameter is passed.
+=====================================================================================================
+When we define a parameter in a method of a testng class, TestNG expects either you declare parameter as optional or pass it from testng xml.
+If you do not do either, you will get exception as above stating the same. 
+public class ParameterTest {    
+    @Test
+    @Parameters({"testParameters1","testParameters2"})
+        // I used Optional annotation with parameter declaration 
+    public void testMethod(@Optional String testParameters1, @Optional String testParameters2)
+    {
+        System.out.println("Paramters one for test method: "+testParameters1);
+        System.out.println("Paramters two for test method: "+testParameters2);
+    }
+     
+}
+
+
+===================================================================================================
+
+   @Test
+    public void testMethod(String testParameters1, String testParameters2)
+    {
+        System.out.println("Paramters one for test method: "+testParameters1);
+        System.out.println("Paramters two for test method: "+testParameters2);
+    }
+     
+    @Parameters({"confAfterParameter"})
+    @AfterMethod
+    public void configurationAfterMethod(String confAfterParameter)
+    {
+        System.out.println("Paramters for after configuration method: "+confAfterParameter);
+    }
+
+===========================================================================
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+  <parameter name="confBeforeParameter" value="confBeforeParameter"/>
+	<parameter name="testParameters1" value="testParameters1"/>
+	<parameter name="testParameters2" value="testParameters2"/>
+	<parameter name="confAfterParameter" value="confAfterParameter"/>
+    <classes>
+      <class name="Parameters.ParametersThroughXML"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

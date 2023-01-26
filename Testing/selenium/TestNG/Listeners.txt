@@ -1,0 +1,55 @@
+At the class level: By using @Listeners annotation within each class.
+At the suite level: Define the class names to implement listeners in the testng.xml file.
+=========================================================================================
+ITestListener:
+import org.testng.ITestContext;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
+public class testNGListeners implements ITestListener {
+    
+    public void onStart(ITestContext context)
+    {
+        System.out.println("OnStart() method started..\n"+context.getOutputDirectory());
+    }
+    
+    public void onFinish(ITestContext context)
+    {
+        System.out.println("onFinish() Method started Listing Passed Methods..\n"+context.getPassedTests());
+        System.out.println("onFinish() Method started Listing Failed Methods..\n"+context.getFailedTests());
+    }
+    
+    public void onTestStart(ITestResult result)
+    {
+        System.out.println("A New Test Method Started: "+result.getName());
+    }
+    
+    public void onTestSkipped(ITestResult result)
+    {
+        System.out.println(result.getName()+" Test has been skipped..");
+    }
+    
+    public void onTestSuccess(ITestResult result)
+    {
+        System.out.println(result.getName()+" Executed successfully..");
+    }
+    
+    public void onTestFailure(ITestResult result)
+    {
+        System.out.println(result.getName()+"Test Failed..");
+    }
+    
+    public void onTestFailedButWithinSuccessPercentage(ITestResult result)
+    {
+        System.out.println(result.getName()+"Test Failed within Success percentage..");
+    }
+}
+
+=======================================================================================
+Class Level implementation:
+@Listeners(testNGListeners.class)
+public class testNGTestListener{    
+    
+    @Test //Passed Test
+    public void launchBrowser()
+    {
+}

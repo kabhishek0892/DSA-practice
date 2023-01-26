@@ -5,6 +5,30 @@ import java.util.Set;
 
 public class LargestUniqueSubstring {
 
+    static int LongestSubstringUsingSet(String s){
+        Set<Character> set = new HashSet<>();
+         int i=0; // slow pointer
+        int j=0; //  fast pointer
+        int res=0;
+        String op;
+
+        while (j<s.length()){
+            if(set.contains(s.charAt(j))) //if already added to set , remove character at ith index
+            {
+                set.remove(s.charAt(i));
+                i++;
+            }
+            else{
+                set.add(s.charAt(j)); // If not added, just add it to set
+
+                j++;
+
+            }
+
+            res = Math.max(set.size(),res);
+        }
+return  res;
+    }
 
     static int LengthofLongestSubstring(String s)
     {
@@ -37,10 +61,12 @@ public class LargestUniqueSubstring {
         return ans;
 
     }
+
+
     public static void main(String[] args) {
 
-            String s ="abcabcbb";
-        System.out.println(LengthofLongestSubstring(s));
+            String s ="abcaffga";
+        System.out.println(LongestSubstringUsingSet(s));
             String largest ="";
 
             for(int i=0;i<s.length();i++)
@@ -53,7 +79,7 @@ public class LargestUniqueSubstring {
                 {
                     if(s.charAt(i)==s.charAt(j))
                         checked=s.substring(i,j);
-                    System.out.println("Checked String is" + checked);
+
                     break;
 
                 }
@@ -64,7 +90,7 @@ public class LargestUniqueSubstring {
 
             }
 
-            System.out.println("Largest String is" + largest);
+
 
 
         }

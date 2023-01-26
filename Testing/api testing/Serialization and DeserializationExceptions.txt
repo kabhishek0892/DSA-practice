@@ -1,0 +1,27 @@
+During Serialization:
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)	
+The most dangerous default value is NULL. If we do not put checks or validation of null values we may end up with NullPointerException. Sometimes ignoring all default values is not good and we just want to ignore NULL values. In that case, we can use
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Employee {
+ 
+	// private variables or data members of pojo class
+	private String firstName;
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+We want that if there are any unknown fields in JSON then the deserialization process should ignore them. This we can achieve using a property called “ignoreUnknown” of @JsonIgnoreProperties annotation. It accepts a boolean value and the default value is false. To ignore unknown property we need to set it true at the class level.
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Employee {
+ 
+	// private variables or data members of pojo class
+	private String firstName;
+	private String lastName;		
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+We need to use enum DeserializationFeature to set the value of “FAIL_ON_UNKNOWN_PROPERTIES” as false. There is no need to make any change in the POJO class.
+
+	ObjectMapper objectMapper = new ObjectMapper();
+	objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+	//objectMapper.con
+	Employee employee = objectMapper.readValue(employeeString, Employee.class);
+

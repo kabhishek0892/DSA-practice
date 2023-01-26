@@ -1,0 +1,22 @@
+Suppose, you need to write 10 @Test annotated method in a class. 
+Either you mark all methods as @Test annotated or directly annotate class itself as @Test. 
+All method will be treated as @Test annotated method by default. See an example below:
+===========================================================================================
+What will happen if I need to write other annotated method like BeforeMethod or AfterMethod? 
+Not a big deal. Mark required annotation on method. It will override class level @Test annotation
+===========================================================================================
+Can a test method return a value? If yes, how can you use it?”.
+
+Yes, a @Test annotated method can return a value but that method will not be considered as a test method for TestNG anymore 
+i.e. TestNG will ignore that method
+===========================================================================================
+	/*
+	 * This test method depends on another test method named "Test1" which is not enabled.	
+	 * Setting ignoreMissingDependencies as true will make it soft dependency. 
+	 */
+	@Test(dependsOnMethods= {"Test1"}, ignoreMissingDependencies= true) // alwaysRun=true
+	public void Test2()
+	{
+		System.out.println("I am Test2");
+	}
+

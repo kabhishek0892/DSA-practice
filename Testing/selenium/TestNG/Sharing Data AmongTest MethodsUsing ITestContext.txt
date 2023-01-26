@@ -1,0 +1,49 @@
+ITestContext is a powerful interface which provides many useful methods.
+ In this post, we will see two important methods setAttribute​(java.lang.String name, java.lang.Object value) 
+and getAttribute​(java.lang.String name).
+    
+setAttribute(atttributeName, attributeValue) :- Set a custom attribute. It is similar to adding at element in a Map as key-value pair. 
+Kindly pay attention here that attribute value can be of any type. This is the reason this method accepts Object type as value. 
+
+getAttribute(attributeName) :- Get the value of given attribute name. Remember return type is an Object. 
+
+public class SharingStateBetweenTestsUsingITestContext {
+	// ITestContext reference is created once for the duration of test run.
+	// Passing ITestContext as a parameter to @Test method to use it. 
+	@Test
+	public void generateData(ITestContext context)
+	{
+		String firstName = "Amod";
+		// Setting an attribute with name and its value
+		context.setAttribute("FirstName", firstName);
+	}
+	
+	
+	@Test
+	public void useData(ITestContext context)
+	{
+		String lastName = "Mahajan";
+		context.setAttribute("LastName", lastName);
+		// Retrieving attribute value set in ITestContext
+		String FN = (String) context.getAttribute("FirstName");
+		String fullName = FN +" "+lastName;
+		System.out.println("Full Name is : "+fullName);
+		context.setAttribute("FullName", fullName);
+	}
+ 
+}
+==========================================================================================================
+Get it in different class:
+public class SharingStateBetweenTestsUsingITestContext2 {
+	
+	@Test
+	public void useDataInOtherClass(ITestContext context)
+	{
+		String profession = "Blogger";
+		String fullName = (String) context.getAttribute("FullName");
+		String nameWithProfession = fullName +" "+profession;
+		System.out.println("Full Name is : "+fullName);
+		System.out.println("Full Name with profession is "+ nameWithProfession);
+	}
+ 
+}

@@ -9,7 +9,7 @@ public class MergeSortedArray {
         int[] arr1 = {-5, 3, 6, 12, 15};
         int n1 = arr1.length;
 
-        int[] arr2 = {-12, -10, -6, -3, 4, 10};
+        int[] arr2 = {-12, -10, 6, -3, 4, 10};
         int n2 = arr2.length;
 
         int[] arr3 = new int[n1+n2];

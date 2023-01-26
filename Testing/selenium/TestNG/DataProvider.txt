@@ -1,0 +1,40 @@
+If we need to run a test with multiple set of data, we need to use DataProvider. 
+Passing a set of data using testng.xml is not possible. 
+It is also a way of achieving data driven testing with TestNG. 
+But remember DataProvider is not a good way of achieving data driven testing.
+If values to parameters are being decided during run time from previous tests, 
+you need to use DataProvider only as you can not modify testng.xml at run time.
+DataProvider also provides you flexibility to run a test method for specific set of data using indices. 
+DataProvider also provides you to run a test method parallely with different set of data.
+You can pass value of any type including user defined class type as well which is not possible in Parameters.
+
+=============================================================
+A DataProvider method can have a name so that it can be used to supply data to test methods by just mentioning its name.
+If you do not provide name to a DataProvider method, you can call it with method name on which it was used.
+A DataProvider annotated method returns an array of array of objects. Remember it can be any dimensional. 
+Number of values passed by a DataProvider method should be equal to number of attributes of test method on which DataProvider method is used. 
+If DataProvider methods provided three attributes, test method must accept three attributes and vise versa.
+======================================================================================================
+Is It Mandatory To Have Return Type as Object in DataProvider Method??
+So it’s clear now that a DataProvider method can return other types as well not only Object. 
+Return type as Object is preferred when we need to return heterogenous data. 
+E.g Integer, String etc all from one method. Since Object class is super class of all other classes in Java so Object class can provide reference to subclass objects by following Upcasting concept of Java.
+=======================================================================================================
+@Test(dataProvider="DataContainer")
+    public void studentRegistration(String First_name, String Last_Name, String Email_ID) {
+        System.out.println("Registered student with details: "+First_name+" "+Last_Name+" "+Email_ID);
+   
+    } 
+     
+    // A data provider method with return type as 2D array
+    @DataProvider(name="DataContainer")
+    public Object[] myDataProvider() {      
+        return new Object[][] 
+        {
+            {"Mukesh", "Otwani", "Motwani@gmail.com"},
+            {"Amod","Mahajan","Amahajan@hotmail.com"},
+            {"Animesh","Prashant","aprashant@gmail.com"},
+            {"Ankur","Singh","asingh@gmail.com"},
+            {"Amritansh", "Kumar","akumar@gmail.com"}           
+             
+        };

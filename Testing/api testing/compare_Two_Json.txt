@@ -1,0 +1,22 @@
+    The above method will return true if JSON nodes are equal.
+    The order of root elements in JSON nodes will not matter.
+    The order of elements in the JSON array will matter and it will not be the same.
+
+	{
+		JsonObject1 = "{\r\n" + 
+				"  \"firstName\" : \"Amod\",\r\n" + 
+				"  \"lastName\" : \"Mahajan\"\r\n" + 
+				"}";
+		
+		jsonObject2 = "{\r\n" + 
+				"  \"firstName\" : \"Amod\",\r\n" + 
+				"  \"lastName\" : \"Mahajan\"\r\n" + 
+				"}";
+		
+		objectMapper = new ObjectMapper();
+		jsonNode1 = objectMapper.readTree(JsonObject1);
+		jsonNode2 = objectMapper.readTree(jsonObject2);
+		
+		// Checking if both json objects are same
+		System.out.println(jsonNode1.equals(jsonNode2));
+	}

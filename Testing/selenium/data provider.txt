@@ -1,0 +1,9 @@
+ @DataProvider(name="provider")
+    public Object[][] dataProvider(){
+       return new Object[][]
+               { {"Abhishek","Kumar","Gaya",123},{"Abhishek","Prasad","Patna",456}};
+       }
+    @Test(dataProvider = "provider")
+    public void usingDatProvider(String fname,String lname,String city,int mob){
+        System.out.println(fname +" "+ lname + city+ mob);
+    }

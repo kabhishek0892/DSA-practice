@@ -1,0 +1,26 @@
+static void waitForPageLoad(WebDriver wdriver) {
+    WebDriverWait wait = new WebDriverWait(wdriver, 60);
+
+    Predicate<WebDriver> pageLoaded = new Predicate<WebDriver>() {
+
+        @Override
+        public boolean apply(WebDriver input) {
+            return ((JavascriptExecutor) input).executeScript("return document.readyState").equals("complete");
+        }
+
+    };
+    wait.until(pageLoaded);
+}
+
+Find if an Element Exists :
+1. driver.findElements( By.id("...") ).size() != 0
+
+2. !driver.findElements(By.id("...")).isEmpty()
+
+3.boolean present;
+try {
+   driver.findElement(By.id("logoutLink"));
+   present = true;
+} catch (NoSuchElementException e) {
+   present = false;
+}

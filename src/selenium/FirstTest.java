@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -18,6 +20,9 @@ public class FirstTest {
     public static void main(String[] args) throws MalformedURLException {
 
 
+
+
+
         System.setProperty("webdriver.chrome.driver","C://headertest//chromedriver.exe");
 
 
@@ -26,7 +31,11 @@ public class FirstTest {
 
         WebDriver driver = new ChromeDriver(options);
         driver.get("https://www.google.com");
+
        WebElement element = driver.findElement(By.xpath("//*[@aria-label='Search']"));
+        WebDriverWait wait = new WebDriverWait(driver,5);
+        wait.until(ExpectedConditions.visibilityOf(element));
+
       System.out.println(element.getLocation());
 
       driver.manage().timeouts();
@@ -43,7 +52,7 @@ Actions builder = new Actions(driver);
       //  js.executeScript("document.getElementById(email).value =abc");
        File f = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait1 = new WebDriverWait(driver,10);
        }
     }
 

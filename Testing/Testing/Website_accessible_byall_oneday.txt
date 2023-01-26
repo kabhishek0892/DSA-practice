@@ -1,0 +1,15 @@
+
+   You are hosting a web app in your server which is accessible only to a particular set of people. 
+But on an unusual day, all the people are able to access your web app. How would you troubleshoot this issue? App change
+    Hacker change
+    Network changes
+    Webserver date issue
+    Security rule changes
+    Timezone/DST issues
+    Leap Year calculation issue
+    Authentication change in app
+    Existing bug in authentication
+    Year start/end Date Boundary
+    External provider authentication broken
+    It is after 03:14:07 UTC on 19 January 2038
+    Natural Disaster causing failover to unsecure setup

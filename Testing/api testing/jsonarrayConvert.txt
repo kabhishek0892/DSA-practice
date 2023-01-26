@@ -1,0 +1,37 @@
+	public static void main(String[] args) throws InterruptedException, JSONException {
+		
+		String sbody="[{\r\n" + 
+				"  \"firstName\": \"John\",\r\n" + 
+				"  \"lastName\" : \"doe\",\r\n" + 
+				"  \"age\"      : 26,\r\n" + 
+				"  \"address\"  : {\r\n" + 
+				"    \"streetAddress\": \"naist street\",\r\n" + 
+				"    \"city\"         : \"Nara\",\r\n" + 
+				"    \"postalCode\"   : \"630-0192\"\r\n" + 
+				"  },\r\n" + 
+				"  \"phoneNumbers\": [\r\n" + 
+				"    {\r\n" + 
+				"      \"type\"  : \"iPhone\",\r\n" + 
+				"      \"number\": \"0123-4567-8888\"\r\n" + 
+				"    },\r\n" + 
+				"    {\r\n" + 
+				"      \"type\"  : \"home\",\r\n" + 
+				"      \"number\": \"0123-4567-8910\"\r\n" + 
+				"    }\r\n" + 
+				"  ]\r\n" + 
+				"}]";
+		
+		JSONArray jsonArray=null;
+	
+		
+	jsonArray=new JSONArray(sbody);
+	System.out.println(jsonArray.length());
+	for(int i=0;i<jsonArray.length();i++) {
+	JSONObject oj=jsonArray.getJSONObject(i);
+	System.out.println(oj.get("phoneNumbers"));
+JSONArray ja=new JSONArray(oj.get("phoneNumbers").toString())	;
+System.out.println(ja.length());
+JSONObject jo=ja.getJSONObject(i);
+JsonPath js1=new JsonPath(jo.toString());
+String name=js1.getString("type");
+System.out.println(name);

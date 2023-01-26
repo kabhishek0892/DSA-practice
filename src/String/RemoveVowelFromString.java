@@ -4,6 +4,8 @@ public class RemoveVowelFromString {
     public static void main(String[] args) {
         String s ="bchfgsjksjdaibfuiopu";
         String s1 = s.replaceAll("[aeiou]","");
+        String s3 = s.replace("a","").replace("e","").replace("i","").replace("o","").replace("u","");
+        System.out.println("Using replace "+ s3);
         System.out.println(s1);
 
         for(int i =0;i<s.length();i++)

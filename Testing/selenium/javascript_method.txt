@@ -1,0 +1,117 @@
+in javascript window and document are two different things
+window is the window screen and document is the webpage loaded
+Javascript has 3 scroll menthods that are utilized by window
+window.scrollBy(0,900)
+window.scrollTo(0,90)
+window.scroll(2,6)-->negative will scroll upwards
+And document has few methods to find element
+js.execute("return document.getElementById('skjks');");
+js.execute("return document.getElementsByClassName('';");
+js.execute("return document.getElementsByTagName('';");
+js.execute("return document.getElementsByName
+Only id element will be singular rest all are list of webelement
+
+
+
+“JavaScript (“JS” for short) is a full-fledged dynamic programming language that, when applied to an HTML document, can provide dynamic interactivity on websites.”
+JavascriptExecutor js = (JavascriptExecutor) driver; 
+driver.findElement(By.xpath("//span[contains(text(),'Solutions')]")).click();
+driver.findElement(By.xpath("//a[contains(text(),'Geolocation Testing')]")).click();
+js.executeScript("window.scrollBy(0,40)"); 
+((JavascriptExecutor)driver).executeScript(“arguments[0].click()”, element); 
+js.executeScript("arguments[0].value='selenium'", searchBox);
+ JavascriptExecutor executor = (JavascriptExecutor)driver; executor.executeScript("document.getElementById("textbox_id").value='new value';);
+
+Difference between WebDriver click() and JavaScript click() method in Selenium.
+We already have enough locators in Selenium webdriver, which help us in identifying web elements on a web page. But sometimes, these locating strategies fail when web element is hidden or it is deeply nested. When we perform any action on these types of web elements, it doesn’t work. If an y website has a lot of AJAX calls, in that case also javascript locating commands are very useful.
+
+We can perform click on a web element of a web page in two ways:-
+
+Using WebDriver click – element.click()
+Using JavaScript click –((JavascriptExecutor)driver).executeScript(“arguments[0].click()”, element); ( Note- driver is a WebDriver instance.)
+So question must be arised in your mind, which is better and when to use.
+
+Since Selenium 3, maximum browser are providing their respective browser driver which implements WebDriver API. Selenium communicates to these browser drivers through HTTP commands and these drivers communicates natively with browser. Official documentation of Selenium says:-
+“Selenium-WebDriver makes direct calls to the browser using each browser’s native support for automation. “
+
+So we can say that the way chrome browser allows a click on a web element may be different from other browsers.
+
+So when we click on a webelement using Selenium WebDriver , it checks two preconditions before clicking:-
+
+The element must be visible.
+It must have a height and width greater than 0.
+If preconditions are not satisfied, you will get exceptions stating element is not clickable or interactable. Refer click() method in official document here.
+
+But in JavaScript clicks does not check these preconditions before clicking. The HTMLElement.click() method simulates a mouse click on an element. When click() is used with supported elements (such as an <input>), it fires the element’s click event. Reference here.
+
+So, JavaScript could click on a web element which may not be clickable by WebDriver API. So use WebDriver click as much as possible and go for JavaScript click when WebDriver click does not work.
+
+WebDriver APIs are designed to simulate the actions which a real user will perform on front end of application. When we go for JavaScript, this is not taking into consideration. JavaScript ways may not catch the bugs which is main goal of automation scripting.
+
+JavaScript operations may not call actions sometimes. Suppose when you click on a button, some popup should appear. That can be relate as onClick event. You may encounter these issues. These issues will not come if you use WebDriver APIs.
+
+I would like to share a problem I faced while automating. There was a Date of birth field which takes input from user and calculates actual age. I typed DOB using Javascript way and it was not calculating actual age and event set on DOB field was not called.
+
+
+------------------------------------------------------------------------------
+how to take Scrren shot of whole page 
+	// Down casting driver to JavascriptExecutor
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		
+		// It returns height of view part. You can say it as page height. When you click on page down key
+		// Page scroll by one page. 
+		long pageHeight= (long)js.executeScript("return window.innerHeight");
+		System.out.println("Page height: "+pageHeight);
+		
+		// It is how much you can scroll. It is height if you scroll, you will reach to bottom of page.
+		long scrollableHeight= (long)js.executeScript("return document.body.scrollHeight");
+		System.out.println("Total scrollable height: "+scrollableHeight);
+		
+		// Finding number of pages. Adding 1 extra to consider decimal part.
+		int numberOfPages=(int) (scrollableHeight/pageHeight)+1;
+		System.out.println("Total pages: "+numberOfPages);
+		
+
+		// Now scrolling page by page
+		for(int i=0;i<numberOfPages;i++)
+		{
+			CaptureFullWebPage.CaptureScreenShotWithTestStepName(driver, "Page "+(i+1));
+			js.executeScript("window.scrollBy(0,"+pageHeight+")");
+			Thread.sleep(2000);
+		}
+
+	public static String CaptureScreenShotWithTestStepName(WebDriver driver, String testStepsName)
+	{
+		try{
+			// down casting WebDriver to use getScreenshotAs method.
+			TakesScreenshot ts= (TakesScreenshot)driver;
+			// capturing screen shot as output type file
+			File screenshotSRC= ts.getScreenshotAs(OutputType.FILE);
+			// Defining path and extension of image
+			String path=System.getProperty("user.dir")+"/ScreenCapturesPNG/"+testStepsName+System.currentTimeMillis()+".png";
+			// copying file from temp folder to desired location
+			File screenshotDest= new File(path);
+			FileUtils.copyFile(screenshotSRC, screenshotDest);
+			return path;
+		}catch(Exception e)
+
+-----------------------------------------------
+how to set calender date if it allows you to put date manually as well as using calender
+public static void setDateUsingJavaScriptInCalendar(WebDriver driver, String value, WebElement calLocator)
+	{
+		JavascriptExecutor jse= (JavascriptExecutor)driver;
+		String script= "arguments[0].setAttribute('value','"+value+"');";
+		jse.executeScript(script, calLocator);
+	}
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver", "./exefiles/chromedriver.exe");
+		WebDriver driver= new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://jqueryui.com/resources/demos/datepicker/dropdown-month-year.html");
+		
+		// Locating departure date calendar
+		WebElement departCal= driver.findElement(By.id("datepicker"));
+		HandlingAnyCalendarUsingJavaScript.setDateUsingJavaScriptInCalendar(driver,"10/09/2017",departCal);
+		
+		}

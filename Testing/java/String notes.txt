@@ -1,0 +1,31 @@
+The string class is immutable in Java, so it’s easy to share it across different threads or functions.
+
+When you create a String using double quotes, it first looks for the String with the same value in the JVM string pool, 
+if match found it returns the reference else it creates the String object and then places it in the JVM String pool. 
+This way JVM saves a lot of space by using the same String in different threads. 
+But if a new operator is used, it will always explicitly creates a new String in the heap memory.
+
++ operator overloading is used to concatenating two strings. Although internally it uses StringBuffer to perform this action.
+
+Why StringBuffer & StringBuilder?
+
+The string class is immutable in java i.e whenever we do any manipulation in String like concatenation, substring, reverse, etc. always generate a new string and discard older String for garbage collection.
+
+StringBuffer is thread-safe because all of its methods are synchronized but the main disadvantage is performance.
+
+Example:
+StringBuilder sb=new StringBuilder("Facing Issues On ");
+sb.append("IT");//Original String will change
+System.out.println(sb);//new string "Facing Issues On IT"
+
+sb.insert(6," Issues ");//insert string on 6th position
+System.out.println(sb);//new string "Facing Issues On IT"
+
+sb.replace(7,14,"Issues");//replace saurabh with  issues
+System.out.println(sb);//new string "Facing Issues On IT"
+
+sb.delete(7,14);//delete saurabh
+System.out.println(sb);//new string "Facing  On IT"
+
+StringBuilder sb=new StringBuilder("Facing Saurabh On IT");
+sb.reverse()

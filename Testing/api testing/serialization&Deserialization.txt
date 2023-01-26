@@ -1,0 +1,42 @@
+serialization
+
+public class UsageOfMSE_EmployeePojo {
+	
+	public static void main(String[] args) throws JsonProcessingException {
+		
+		MSE_EmployeePojo mse_EmployeePojo = new MSE_EmployeePojo();
+		mse_EmployeePojo.setFirstName("Amod");
+		mse_EmployeePojo.setLastName("Mahajan");
+		mse_EmployeePojo.setAge(29);
+		mse_EmployeePojo.setSalary(10987.77);
+		mse_EmployeePojo.setMarried(false);
+		mse_EmployeePojo.setGender("M");
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		String convertedJson = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(mse_EmployeePojo);
+		System.out.println(convertedJson);
+	}
+ 
+}
+
+----------------------------------------------------------
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		// Pass JSON string and the POJO class 
+		Employee employeeObject = objectMapper.readValue(jsonString, Employee.class);
+		// Now use getter method to retrieve values
+		String firsName = employeeObject.getFirstName();
+		String lastName = employeeObject.getLastName();
+		String gender = employeeObject.getGender();
+		int age = employeeObject.getAge();
+		double salary = employeeObject.getSalary();
+		boolean married = employeeObject.getMarried();
+		
+		System.out.println("Details of Employee is as below:-");
+		System.out.println("First Name : "+firsName);
+		System.out.println("Last Name : "+lastName); 
+		System.out.println("Gender : "+gender);
+		System.out.println("Age : "+age);
+		System.out.println("Salary : "+salary);
+		System.out.println("Married : "+married);
+	}

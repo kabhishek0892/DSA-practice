@@ -1,0 +1,36 @@
+	//headless - do not show the browser
+		//fast
+		//no browser display
+		//not recommended -- not that stabled for complex application
+		//only for sanity/smoke -- 5 to 10 TCS
+		WebDriverManager.chromedriver().setup();
+		
+		ChromeOptions co = new ChromeOptions();
+		//co.addArguments("--headless");//switch
+		co.addArguments("--incognito");
+		
+//		FirefoxOptions fo = new FirefoxOptions();
+//		fo.addArguments("--headless");
+		
+		WebDriver driver = new ChromeDriver(co);
+		driver.get("http://www.google.com");
+		System.out.println(driver.getTitle());
+		System.out.println(driver.getCurrentUrl());
+		driver.quit();
+
+CHromeOptions:
+
+option.addArguments("--disable-notifications");
+option.addArguments(" --disable-geolocation ");
+option.addArguments("--ignore-certificate-errors");
+
+
+DesiredCapabilities cap = DesiredCapabilities.firefox();
+FirefoxProfile profile = new FirefoxProfile();
+profile.setPreference("geo.enabled", false);
+cap.setCapability(FirefoxDriver.PROFILE, profile);
+===============================================================
+Accept SSL certificate ---------->
+DesiredCapabilities handlSSLErr = DesiredCapabilities.chrome ()       
+handlSSLErr.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true)
+WebDriver driver = new ChromeDriver (handlSSLErr);

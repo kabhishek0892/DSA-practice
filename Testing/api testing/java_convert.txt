@@ -1,0 +1,24 @@
+Gson is a Java library that can be used to parse the Java Objects into their JSON and vice-versa. 
+It can also be used to convert a JSON string to an equivalent Java object. Google developed GSON for internal use but open sourced it later.
+ For this purpose, Gson provides several built-in serializers and deserializers.
+	Gson gson = new Gson();
+		// toJson(Object src) method converts Java object to JSON object
+		String employeeJsonSring = gson.toJson(employeeObject);
+		// Printing json string. It will be pretty print 
+		System.out.println("Non-pretty JSON String :- ");
+		System.out.println(employeeJsonSring);
+		
+		// We can create a configurable Gson instance using GsonBuilder class
+		Gson gsonBuilder = new GsonBuilder().setPrettyPrinting().create();
+		String employeeJsonSringUsingJsonBuilder = gsonBuilder.toJson(employeeObject);
+		System.out.println("Pretty JSON String :- ");
+		System.out.println(employeeJsonSringUsingJsonBuilder);
+		
+		// To write Json object in to a file, we need to pass a FileWriter object which is in direct implementation of 
+		// Appendable interface. Make sure you call flush() method otherwise json file will be empty.
+		String userDir = System.getProperty("user.dir");
+		File outputJsonFile = new File(userDir+ "\\src\\test\\resources\\EmployeePayloadUsingGson.json");
+		FileWriter fileWriter = new FileWriter(outputJsonFile);
+		gsonBuilder.toJson(employeeObject,fileWriter);
+		fileWriter.flush();
+

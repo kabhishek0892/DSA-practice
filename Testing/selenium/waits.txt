@@ -1,0 +1,49 @@
+implicit and explicit
+implicit:
+drv.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+explicit : wait until expected conditions 
+ // explicit wait - to wait for the compose button to be click-able
+              WebDriverWait wait = new WebDriverWait(drv,30);
+ 
+         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'COMPOSE')]")));
+              // click on the compose button as soon as the "compose" button is visible
+       drv.findElement(By.xpath("//div[contains(text(),'COMPOSE')]")).click();
+
+Expected Conditions:
+    stalenessOf()
+    alertIsPresent()
+    elementSelectionStateToBe()
+    elementToBeClickable()
+    elementToBeSelected()
+    frameToBeAvaliableAndSwitchToIt()
+    invisibilityOfTheElementLocated()
+    invisibilityOfElementWithText()
+    presenceOfAllElementsLocatedBy()
+    presenceOfElementLocated()
+    textToBePresentInElement()
+    textToBePresentInElementLocated()
+    textToBePresentInElementValue()
+    titleIs()
+    titleContains()
+    visibilityOf()
+    visibilityOfAllElements()
+    visibilityOfAllElementsLocatedBy()
+    visibilityOfElementLocated()
+
+-------------------------------------------------------------
+Fluent Wait:
+//Declare and initialise a fluent wait
+FluentWait wait = new FluentWait(driver);
+//Specify the timout of the wait
+wait.withTimeout(5000, TimeUnit.MILLISECONDS); //Duration.ofSeconds(100) //Default time 500 miliseconds
+//Sepcify polling time
+wait.pollingEvery(250, TimeUnit.MILLISECONDS);
+//Specify what exceptions to ignore
+wait.ignoring(NoSuchElementException.class)
+
+//This is how we specify the condition to wait on.
+wait.until(ExpectedConditions.alertIsPresent());
+//to give custom message
+wait.withMessage("This is fluent wait");
+

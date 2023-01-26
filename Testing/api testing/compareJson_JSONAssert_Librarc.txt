@@ -1,0 +1,21 @@
+	public void exactSameJson() throws JSONException {
+		
+		String jsoNobject1 = "{\r\n" + 
+				"  \"firstName\" : \"Amod\",\r\n" + 
+				"  \"lastName\": \"Mahajan\"\r\n" + 
+				"}";
+		
+		String jsonObject2 = "{\r\n" + 
+				"  \"firstName\" : \"Amod\",\r\n" + 
+				"  \"lastName\": \"Mahajan\"\r\n" + 
+				"}";
+		
+		// Lenient mode - extensible and no strict ordering
+		JSONAssert.assertEquals(jsoNobject1, jsonObject2, JSONCompareMode.LENIENT);
+	}
+
+---------------------------------------------------------------------------------------------------------------------------
+
+If we do not want extensibility or we want to do an exact match of fields in both JSON then we can go for strict mode.
+
+JSONAssert.assertEquals(jsoNobject1, jsonObject2, JSONCompareMode.STRICT

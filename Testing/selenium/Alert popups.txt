@@ -1,0 +1,22 @@
+Types of Alerts :
+
+1. simple alert --> Only one option --> OK (accept)
+2. Confirmation alert  --> Two Options --> Ok, Cancel  ( accept , dismiss & getText())
+3. Prompt alert --> Has a text box and then click on value --> sendKeys--> accept
+
+  Alert a = new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
+        if (a != null) 
+  driver.switchTo().alert().accept();	
+---------------------------------------------------------------------------
+ try {
+            driver.findElement(By.id("timerAlertButton")).click();
+            WebDriverWait wait = new WebDriverWait(driver,10);
+            wait.until(ExpectedConditions.alertIsPresent());
+            Alert simpleAlert = driver.switchTo().alert();
+            simpleAlert.accept();
+            System.out.println("Unexpected alert accepted");
+        } catch (Exception e) {
+            System.out.println("unexpected alert not present");
+        }
+        driver.quit();
+    }

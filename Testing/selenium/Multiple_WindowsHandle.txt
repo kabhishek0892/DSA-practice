@@ -1,0 +1,33 @@
+Convert set to array List and navigate to elements 
+
+ ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+    driver.switchTo().window(tabs2.get(1));
+    driver.close();
+    driver.switchTo().window(tabs2.get(0));
+
+----------------------------------------------------------------------------------
+To Iterate through set of String
+String MainWindow=driver.getWindowHandle();
+
+        // To handle all new opened window.
+        Set<String> s1=driver.getWindowHandles();
+        Iterator<String> i1=s1.iterator();
+
+        while(i1.hasNext())
+        {
+            String ChildWindow=i1.next();
+
+            if(!MainWindow.equalsIgnoreCase(ChildWindow))
+            {
+
+                // Switching to Child window
+                driver.switchTo().window(ChildWindow);
+                driver.findElement(By.name("emailid"))
+                        .sendKeys("gaurav.3n@gmail.com");
+
+                driver.findElement(By.name("btnLogin")).click();
+
+                // Closing the Child Window.
+                driver.close();
+            }
+        }

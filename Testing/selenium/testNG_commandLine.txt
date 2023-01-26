@@ -1,0 +1,13 @@
+Add surefire plugin
+
+Easiest solution would be, add the below lines in surefire plugin.
+
+<suiteXmlFiles>
+    <!-- pass testng.xml files as argument from command line -->
+    <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+</suiteXmlFiles>
+
+And run your xml file as below,
+
+mvn clean test -Dsurefire.suiteXmlFiles=/path/to/testng.xml
+

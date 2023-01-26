@@ -1,0 +1,22 @@
+Support for the Chromium driver for Microsoft Edge browser
+Has native support for Chrome DevTools with new API in order to get detailed Chrome Development properties (ApplicationCache, Fetch, Network, Performance, Profiler, ResourceTiming, Security and Target CDP domains)
+Instead of JSON wire protocol, native support of W3C standard using (for Session processes, Desired Capabilities)
+Support of Relative Locators 
+Running with different browsers in same time and with different tabs in one browser window (Window and Tab Management)
+Improvements
+Improved Docker support 
+Improved identification of parent frame directly
+Grid Concepts: some of commands, URLs and some properties have changed and improved in Selenium Grid.
+
+frame identification
+
+-------------------------------------
+network learning
+Here is a list of some of the things we can achieve by using DevTools API with Selenium:
+URL filtering
+Adding custom headers for requests
+Intercepting requests/responses and acting like a “Proxy”
+Get performance and Metrics of our Browser/Network
+Leverage Console capabilities
+Emulate network conditions
+Perform security operations

@@ -1,0 +1,51 @@
+String path = "C:\\Users\\Desktop\\ExportExcel.xlsx";
+FileInputStream fis = new FileInputStream(path);
+Workbook workbook = new XSSFWorkbook(fis);
+Sheet sheet = workbook.getSheetAt(0);
+int lastRow = sheet.getLastRowNum();
+System.out.println("Last row- "+lastRow);
+for(int i=0; i<=lastRow; i++){
+Row row = sheet.getRow(i);
+int lastCell = row.getLastCellNum();
+for(int j=0; j<lastCell; j++){
+Cell cell = row.getCell(j);
+String value = cell.getStringCellValue();
+System.out.println(value);
+
+
+
+Second Approach using Iterator
+----------------------------------------------------------------------------------
+File file = new File("C:\\demo\\employee.xlsx");   //creating a new file instance  
+FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file  
+//creating Workbook instance that refers to .xlsx file  
+XSSFWorkbook wb = new XSSFWorkbook(fis);   
+XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object  
+Iterator<Row> itr = sheet.iterator();    //iterating over excel file  
+while (itr.hasNext())                 
+{  
+Row row = itr.next();  
+Iterator<Cell> cellIterator = row.cellIterator();   //iterating over each column  
+while (cellIterator.hasNext())   
+{  
+Cell cell = cellIterator.next();  
+switch (cell.getCellType())               
+{  
+case Cell.CELL_TYPE_STRING:    //field that represents string cell type  
+System.out.print(cell.getStringCellValue() + "\t\t\t");  
+break;  
+case Cell.CELL_TYPE_NUMERIC:    //field that represents number cell type  
+System.out.print(cell.getNumericCellValue() + "\t\t\t");  
+break;  
+default:  
+
+---------------------------------------------------------------------------------------
+reading value of a particular cell  
+
+FileInputStream fis=new FileInputStream("C:\\demo\\EmployeeData.xlsx");  
+wb=new XSSFWorkbook(fis); 
+Sheet sheet=wb.getSheetAt(0);   //getting the XSSFSheet object at given index  
+Row row=sheet.getRow(vRow); //returns the logical row  
+Cell cell=row.getCell(vColumn); //getting the cell representing the given column  
+value=cell.getStringCellValue();    //getting cell value  
+return value;               //returns the cell value   
